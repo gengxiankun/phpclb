@@ -1,7 +1,6 @@
 {
     "name": "gengxiankun/phplb",
     "description": "php swagger cloud load balaner api",
-    "type": "project",
     "license": "BSD-3-Clause",
     "authors": [
         {
