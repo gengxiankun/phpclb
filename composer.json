@@ -22,8 +22,8 @@
         "bin/phpclb"
     ],
     "autoload": {
-        "psr-4": {
-            "gengxiankun\\PHPLb\\": "src"
-        }
+        "classmap": [
+            "src/"
+        ]
     }
 }
