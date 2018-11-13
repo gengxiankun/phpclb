@@ -1,0 +1,30 @@
+{
+    "name": "gengxiankun/phplb",
+    "description": "php swagger cloud load balaner api",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "gengxiankun",
+            "homepage": "https://github.com/gengxiankun",
+            "email": "gengxiankun@126.com",
+            "role": "Project Founder"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0",
+        "squizlabs/php_codesniffer": "^2.0"
+    },
+    "bin": [
+        "bin/phpclb"
+    ],
+    "autoload": {
+        "psr-4": {
+            "gengxiankun\\PHPLb\\": "src"
+        }
+    }
+}

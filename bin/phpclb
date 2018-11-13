@@ -1,0 +1,84 @@
+#!/usr/bin/env php
+<?php
+/**
+ * phplb clb cli
+ *
+ * @action modifyForwardFourthBackendsWeight 			  string 修改应用型四层监听器转发规则上云服务器的权重
+ * @action registerInstancesWithForwardLBFourthListener   string 绑定云服务器到应用型负载均衡四层监听器的转发规则上
+ * @action deregisterInstancesFromForwardLBFourthListener string 解绑应用型负载均衡四层监听器转发规则上的云服务器
+ *
+ * @usage:
+ * phpclb \
+ *  ACTION\
+ *  secretId xxx\
+ *  secretKey xxx\
+ *  loadBalancerId xxx\
+ *  listenerId xxx\
+ *  backends_n_instanceId xxx\
+ *  backends_n_port xxx\
+ *  backends_n_weight xxx
+ *
+ * @category  PHP
+ * @author    耿贤坤 <gengxiankun@126.com>
+ */
+
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
+
+use gengxiankun\PHPlb\tx\Clb;
+
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
+}
+
+// 腾讯云ApiAction
+$action = $argv[1];
+// 清理参数
+unset($argv[0], $argv[1]);
+
+function odd($var)
+{
+    return($var & 1);
+}
+
+function even($var)
+{
+    return(!($var & 1));
+}
+
+$keys = array_filter($argv, 'even', ARRAY_FILTER_USE_KEY);
+$values = array_filter($argv, 'odd', ARRAY_FILTER_USE_KEY);
+$parameters = array_combine($keys, $values);
+
+extract($parameters);
+
+$clb = new Clb([
+	'secretId' => $secretId ?? null,
+	'secretKey' => $secretKey ?? null,
+	'region' => $region ?? null
+]);
+
+switch ($action) {
+	case 'modifyForwardFourthBackendsWeight':
+		$response = $clb->modifyForwardFourthBackendsWeight($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
+		break;
+
+	case 'registerInstancesWithForwardLBFourthListener':
+		$response = $clb->registerInstancesWithForwardLBFourthListener($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
+		break;
+
+	case 'deregisterInstancesFromForwardLBFourthListener':
+		$response = $clb->deregisterInstancesFromForwardLBFourthListener($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
+		break;
+	
+	default:
+		throw new Exception("Error Processing Command", 1);
+		break;
+}
+
+echo $response;
