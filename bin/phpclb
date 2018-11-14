@@ -12,6 +12,7 @@
  *  ACTION\
  *  secretId xxx\
  *  secretKey xxx\
+ * 	region xxx\
  *  loadBalancerId xxx\
  *  listenerId xxx\
  *  backends_n_instanceId xxx\
@@ -30,7 +31,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use gengxiankun\PHPlb\tx\Clb;
+use gengxiankun\phplb\tencent\CLB;
 
 if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
@@ -57,7 +58,7 @@ $parameters = array_combine($keys, $values);
 
 extract($parameters);
 
-$clb = new Clb([
+$clb = new CLB([
 	'secretId' => $secretId ?? null,
 	'secretKey' => $secretKey ?? null,
 	'region' => $region ?? null

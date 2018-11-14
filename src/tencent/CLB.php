@@ -1,18 +1,18 @@
 <?php
 /**
- * php clb class
+ * Tencent CLB Class
  *
  * PHP version 7
  *
  * @category  PHP
  * @author    耿贤坤 <gengxiankun@126.com>
  */
-namespace gengxiankun\PHPlb\tx;
+namespace gengxiankun\phplb\tencent;
 
 use GuzzleHttp\Client;
 
 /**
- * Clb Class
+ * Tencent CLB Class
  *
  * @property string secretId  腾讯云Api安全凭证，用于标识 API 调用者身份
  * @property string secretKey 腾讯云Api安全凭证，用于加密签名字符串和服务器端验证签名字符串的密钥
@@ -21,7 +21,7 @@ use GuzzleHttp\Client;
  * @category  PHP
  * @author    耿贤坤 <gengxiankun@126.com>
  */
-class Clb
+class CLB
 {
 	/**
 	 * 腾讯云Api安全凭证，用于标识 API 调用者身份

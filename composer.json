@@ -2,6 +2,11 @@
     "name": "gengxiankun/phplb",
     "description": "php swagger cloud load balaner api",
     "license": "BSD-3-Clause",
+    "keywords": [
+        "PHPCLB",
+        "Load Balaner",
+        "Tencent CLB"
+    ],
     "authors": [
         {
             "name": "gengxiankun",
