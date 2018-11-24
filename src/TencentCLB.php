@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Tencent CLB Class
@@ -7,7 +8,7 @@
  * @category  PHP
  * @author    耿贤坤 <gengxiankun@126.com>
  */
-namespace gengxiankun\phplb\tencent;
+namespace gengxiankun\phpclb;
 
 use GuzzleHttp\Client;
 
@@ -21,7 +22,7 @@ use GuzzleHttp\Client;
  * @category  PHP
  * @author    耿贤坤 <gengxiankun@126.com>
  */
-class CLB
+class TencentCLB
 {
 	/**
 	 * 腾讯云Api安全凭证，用于标识 API 调用者身份
@@ -62,6 +63,16 @@ class CLB
 	 * 修改应用型四层监听器转发规则上云服务器的权重的Action
 	 */
 	const MFFBW_ACTION = 'ModifyForwardFourthBackendsWeight';
+
+	/**
+	 * 修改应用型七层监听器转发规则上云服务器的端口的Action
+	 */
+	const MFSBP_ACTION = 'ModifyForwardSeventhBackendsPort';
+
+	/**
+	 * 修改应用型四层监听器转发规则上云服务器的端口的Action
+	 */
+	const MFFBP_ACTION = 'ModifyForwardFourthBackendsPort';
 
 	/**
 	 * 查询应用型负载均衡云服务器列表的Action
@@ -253,6 +264,91 @@ class CLB
 			'listenerId' => $listenerId,
 			'backends.1.instanceId' => $backends_n_instanceId,
 			'backends.1.port' => $backends_n_port,
+			'backends.1.weight' => $backends_n_weight
+		]);
+
+		$response = $this->guzzleClient()->request('GET', '', [
+			'query' => $query,
+			'debug' => true
+		]);
+
+		return $response->getBody()->getContents();
+	}
+
+	/**
+	 * 修改应用型七层监听器转发规则上云服务器的端口
+	 *
+	 * @param loadBalancerId 		string 负载均衡实例 ID，可通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/api/214/1261) 接口同时入参 forward 字段为 1 或者 -1 来查询。
+	 * @param listenerId     		string 应用型负载均衡监听器 ID，可通过 DescribeForwardLBListeners 接口查询。
+	 * @param backends_n_instanceId string 云服务器的唯一 ID，可通过 DescribeInstances 接口返回字段中的 unInstanceId 字段获取；此接口支持同时输入多台主机的实例 ID（如：要输入两台主机，则设置 backends.1.instanceId&backends.2.instanceId）。
+	 * @param backends_n_port 		int    负载均衡实例监听器后端云服务器监听端口，可选值：1~65535。
+	 * @param backends_n_newort 	int    负载均衡实例监听器后端云服务器监听端口，可选值：1~65535。
+	 * @param backends_n_weight		int    云服务器的权重，取值范围：0~100，默认为 10。
+	 * @param locationIds_n			string 指定的规则 ID。
+	 * @param domain 				string 监听器转发规则的域名。
+	 * @param url 					string 要绑定的监听器转发规则的路径。
+	 *
+	 * @return json
+	 */
+	public function modifyForwardSeventhBackendsPort(
+		$loadBalancerId, 
+		$listenerId, 
+		$backends_n_instanceId, 
+		$backends_n_port, 
+		$backends_n_newPort,
+		$backends_n_weight = null,
+		$locationIds_n = null,
+		$domain	= null,
+		$url = null
+	)
+	{
+		$query = $this->getQueryParameter(self::MFSBP_ACTION, [
+			'loadBalancerId' => $loadBalancerId,
+			'listenerId' => $listenerId,
+			'backends.1.instanceId' => $backends_n_instanceId,
+			'backends.1.port' => $backends_n_port,
+			'backends.1.newPort' => $backends_n_newPort,
+			'backends.1.weight' => $backends_n_weight,
+			'locationIds.1' => $locationIds_n,
+			'domain' => $domain,
+			'url' => $url
+		]);
+
+		$response = $this->guzzleClient()->request('GET', '', [
+			'query' => $query,
+			'debug' => true
+		]);
+
+		return $response->getBody()->getContents();
+	}
+
+	/**
+	 * 修改应用型四层监听器转发规则上云服务器的端口
+	 *
+	 * @param loadBalancerId 		string 负载均衡实例 ID，可通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/api/214/1261) 接口同时入参 forward 字段为 1 或者 -1 来查询。
+	 * @param listenerId     		string 应用型负载均衡监听器 ID，可通过 DescribeForwardLBListeners 接口查询。
+	 * @param backends_n_instanceId string 云服务器的唯一 ID，可通过 DescribeInstances 接口返回字段中的 unInstanceId 字段获取；此接口支持同时输入多台主机的实例 ID（如：要输入两台主机，则设置 backends.1.instanceId&backends.2.instanceId）。
+	 * @param backends_n_port 		int    负载均衡实例监听器后端云服务器监听端口，可选值：1~65535。
+	 * @param backends_n_newPort 	int    负载均衡实例监听器后端云服务器监听端口，可选值：1~65535。
+	 * @param backends_n_weight		int    云服务器的权重，取值范围：0~100，默认为 10。
+	 *
+	 * @return json
+	 */
+	public function modifyForwardFourthBackendsPort(
+		$loadBalancerId, 
+		$listenerId, 
+		$backends_n_instanceId, 
+		$backends_n_port, 
+		$backends_n_newPort, 
+		$backends_n_weight = null
+	)
+	{
+		$query = $this->getQueryParameter(self::MFFBP_ACTION, [
+			'loadBalancerId' => $loadBalancerId,
+			'listenerId' => $listenerId,
+			'backends.1.instanceId' => $backends_n_instanceId,
+			'backends.1.port' => $backends_n_port,
+			'backends.1.newPort' => $backends_n_newPort,
 			'backends.1.weight' => $backends_n_weight
 		]);
 

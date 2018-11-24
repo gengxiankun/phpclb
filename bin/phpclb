@@ -3,8 +3,14 @@
 /**
  * phplb clb cli
  *
+ * @action modifyForwardSeventhBackends 			  	  string 修改应用型七层监听器转发规则上云服务器的权重
  * @action modifyForwardFourthBackendsWeight 			  string 修改应用型四层监听器转发规则上云服务器的权重
+ * @action modifyForwardSeventhBackendsPort				  string 修改应用型七层监听器转发规则上云服务器的端口
+ * @action modifyForwardFourthBackendsPort				  string 修改应用型四层监听器转发规则上云服务器的端口
+ * @action describeForwardLBBackends					  string 查询应用型负载均衡云服务器列表
+ * @action registerInstancesWithForwardLBSeventhListener  string 绑定云服务器到应用型负载均衡七层监听器的转发规则上
  * @action registerInstancesWithForwardLBFourthListener   string 绑定云服务器到应用型负载均衡四层监听器的转发规则上
+ * @action deregisterInstancesFromForwardLB  			  string 解绑应用型负载均衡七层监听器转发规则上的云服务器
  * @action deregisterInstancesFromForwardLBFourthListener string 解绑应用型负载均衡四层监听器转发规则上的云服务器
  *
  * @usage:
@@ -31,7 +37,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use gengxiankun\phplb\tencent\CLB;
+use gengxiankun\phpclb\TencentCLB;
 
 if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
@@ -58,19 +64,43 @@ $parameters = array_combine($keys, $values);
 
 extract($parameters);
 
-$clb = new CLB([
+$clb = new TencentCLB([
 	'secretId' => $secretId ?? null,
 	'secretKey' => $secretKey ?? null,
 	'region' => $region ?? null
 ]);
 
 switch ($action) {
+	case 'modifyForwardSeventhBackends':
+		$response = $clb->modifyForwardSeventhBackends($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight, $locationIds_n, $domain, $url);
+		break;
+
 	case 'modifyForwardFourthBackendsWeight':
 		$response = $clb->modifyForwardFourthBackendsWeight($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
 		break;
 
+	case 'modifyForwardSeventhBackendsPort':
+		$response = $clb->modifyForwardSeventhBackendsPort($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_newPort, $backends_n_weight, $locationIds_n, $domain, $url);
+		break;
+
+	case 'modifyForwardFourthBackendsPort':
+		$response = $clb->modifyForwardFourthBackendsPort($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_newPort, $backends_n_weight);
+		break;
+
+	case 'describeForwardLBBackends':
+		$response = $clb->describeForwardLBBackends($loadBalancerId);
+		break;
+
+	case 'registerInstancesWithForwardLBSeventhListener':
+		$response = $clb->registerInstancesWithForwardLBSeventhListener($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight, $locationIds_n, $domain, $url);
+		break;
+
 	case 'registerInstancesWithForwardLBFourthListener':
 		$response = $clb->registerInstancesWithForwardLBFourthListener($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
+		break;
+
+	case 'deregisterInstancesFromForwardLB':
+		$response = $clb->deregisterInstancesFromForwardLB($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $locationIds_n, $domain, $url);
 		break;
 
 	case 'deregisterInstancesFromForwardLBFourthListener':
