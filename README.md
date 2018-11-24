@@ -7,8 +7,9 @@ PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
 安装此扩展程序的首选方法是通过 [composer](http://getcomposer.org/download/).
 
 执行命令
-
-`php composer.phar require --prefer-dist gengxiankun/phpclb "~1.0.0"`
+```bash
+php composer.phar require --prefer-dist gengxiankun/phpclb "~1.0.0"
+```
 
 或添加配置到项目目录下的composer.json文件的require部分
 
@@ -22,9 +23,9 @@ PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
 use gengxiankun\phpclb\TencentCLB;
 
 $clb = new TencentCLB([
-	'secretId' => $secretId ?? null,
-	'secretKey' => $secretKey ?? null,
-	'region' => $region ?? null
+    'secretId' => $secretId,
+    'secretKey' => $secretKey,
+    'region' => $region
 ]);
 
 $response = $clb->modifyForwardFourthBackendsWeight($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
