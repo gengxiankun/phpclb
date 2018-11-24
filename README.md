@@ -14,7 +14,23 @@ PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
 
 `"gengxiankun/phpclb": "~1.0.0"`
 
-## CLI 用法
+## 使用
+
+### SDK 用法
+
+```php
+use gengxiankun\phpclb\TencentCLB;
+
+$clb = new TencentCLB([
+	'secretId' => $secretId ?? null,
+	'secretKey' => $secretKey ?? null,
+	'region' => $region ?? null
+]);
+
+$response = $clb->modifyForwardFourthBackendsWeight($loadBalancerId, $listenerId, $backends_n_instanceId, $backends_n_port, $backends_n_weight);
+```
+
+### CLI 用法
 
 ```bash
 phpclb [ Action ] [ paramter1 value1 ] [ paramter2 value2 ] ... [ paramterN valueN ]
