@@ -14,7 +14,7 @@ PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
 
 `"gengxiankun/phpclb": "~1.0.0"`
 
-## Cli用法
+## CLI 用法
 
 ```bash
 phpclb [ Action ] [ paramter1 value1 ] [ paramter2 value2 ] ... [ paramterN valueN ]
