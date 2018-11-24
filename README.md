@@ -32,12 +32,12 @@ phpclb \
 ```
 
 ## 支持的 Actions LIST
-- modifyForwardSeventhBackends 修改应用型七层监听器转发规则上云服务器的权重
-- modifyForwardFourthBackendsWeight 修改应用型四层监听器转发规则上云服务器的权重
-- modifyForwardSeventhBackendsPort 修改应用型七层监听器转发规则上云服务器的端口
-- modifyForwardFourthBackendsPort 修改应用型四层监听器转发规则上云服务器的端口
-- describeForwardLBBackends 查询应用型负载均衡云服务器列表
-- registerInstancesWithForwardLBSeventhListener 绑定云服务器到应用型负载均衡七层监听器的转发规则上
-- registerInstancesWithForwardLBFourthListener 绑定云服务器到应用型负载均衡四层监听器的转发规则上
-- deregisterInstancesFromForwardLB 解绑应用型负载均衡七层监听器转发规则上的云服务器
-- deregisterInstancesFromForwardLBFourthListener 解绑应用型负载均衡四层监听器转发规则上的云服务器
+- `modifyForwardSeventhBackends` 修改应用型七层监听器转发规则上云服务器的权重
+- `modifyForwardFourthBackendsWeight` 修改应用型四层监听器转发规则上云服务器的权重
+- `modifyForwardSeventhBackendsPort` 修改应用型七层监听器转发规则上云服务器的端口
+- `modifyForwardFourthBackendsPort` 修改应用型四层监听器转发规则上云服务器的端口
+- `describeForwardLBBackends` 查询应用型负载均衡云服务器列表
+- `registerInstancesWithForwardLBSeventhListener` 绑定云服务器到应用型负载均衡七层监听器的转发规则上
+- `registerInstancesWithForwardLBFourthListener` 绑定云服务器到应用型负载均衡四层监听器的转发规则上
+- `deregisterInstancesFromForwardLB` 解绑应用型负载均衡七层监听器转发规则上的云服务器
+- `deregisterInstancesFromForwardLBFourthListener` 解绑应用型负载均衡四层监听器转发规则上的云服务器
