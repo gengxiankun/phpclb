@@ -1,4 +1,6 @@
 # PHPCLB
+PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
+> 目前阶段腾讯云还未提供负载均衡中PHP的 SDK 便自己封装了一个，提供了 CLI 的调用方式，在 CICD 中的多种发布模式中起到关键作用。
 
 ## 安装
 
@@ -12,7 +14,7 @@
 
 `"gengxiankun/phpclb": "~1.0.0"`
 
-## 使用
+## Cli用法
 
 ```bash
 phpclb [ Action ] [ paramter1 value1 ] [ paramter2 value2 ] ... [ paramterN valueN ]
