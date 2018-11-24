@@ -38,7 +38,7 @@ phpclb [ Action ] [ paramter1 value1 ] [ paramter2 value2 ] ... [ paramterN valu
 ```
 *ex*
 ```bash
-phpclb \
+vendor/bin/phpclb \
  modifyForwardFourthBackendsWeight\
  secretId xxx\
  secretKey xxx\
