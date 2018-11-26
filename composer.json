@@ -1,6 +1,6 @@
 {
-    "name": "gengxiankun/phplb",
-    "description": "php swagger cloud load balaner api",
+    "name": "gengxiankun/phpclb",
+    "description": "PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）",
     "license": "BSD-3-Clause",
     "keywords": [
         "PHPCLB",
