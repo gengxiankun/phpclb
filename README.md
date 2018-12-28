@@ -5,6 +5,10 @@ PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
 
 请配合 [腾讯云负载均衡API文档](https://cloud.tencent.com/document/product/214/888) 使用。
 
+[![Latest Stable Version](https://poser.pugx.org/gengxiankun/phpclb/v/stable)](https://packagist.org/packages/gengxiankun/phpclb)
+[![Total Downloads](https://poser.pugx.org/gengxiankun/phpclb/downloads)](https://packagist.org/packages/gengxiankun/phpclb)
+[![License](https://poser.pugx.org/gengxiankun/phpclb/license)](https://packagist.org/packages/gengxiankun/phpclb)
+
 ## 安装
 
 安装此扩展程序的首选方法是通过 [composer](http://getcomposer.org/download/).
@@ -65,7 +69,13 @@ vendor/bin/phpclb \
 - `deregisterInstancesFromForwardLBFourthListener` 解绑应用型负载均衡四层监听器转发规则上的云服务器
 
 ## API 参数对照表
-First Header | Second Header
+原生参数 | 现参数
 ------------ | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+locationIds.n | locationIds_n
+backends.n.instanceId | backends_n_instanceId
+backends.n.port | backends_n_port
+backends.n.weight | backends_n_weight
+
+> 其他参数不变
+backends.n.port | backends_n_port参数
+backends.n.port | backends_n_port
