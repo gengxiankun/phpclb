@@ -1,6 +1,9 @@
 # PHPCLB
 PHP封装的腾讯云负载均衡 SDK 及 CLI（负载均衡 API 2017）
-> 目前阶段腾讯云还未提供负载均衡中PHP的 SDK 便自己封装了一个，提供了 CLI 的调用方式，在 CICD 中的多种发布模式中起到关键作用。请配合 [腾讯云负载均衡API文档](https://cloud.tencent.com/document/product/214/888) 使用。
+
+> 目前阶段腾讯云还未提供负载均衡中PHP的 SDK 便自己封装了一个，提供了 CLI 的调用方式，在 CICD 中的多种发布模式中起到关键作用。
+
+请配合 [腾讯云负载均衡API文档](https://cloud.tencent.com/document/product/214/888) 使用。
 
 ## 安装
 
@@ -60,3 +63,9 @@ vendor/bin/phpclb \
 - `registerInstancesWithForwardLBFourthListener` 绑定云服务器到应用型负载均衡四层监听器的转发规则上
 - `deregisterInstancesFromForwardLB` 解绑应用型负载均衡七层监听器转发规则上的云服务器
 - `deregisterInstancesFromForwardLBFourthListener` 解绑应用型负载均衡四层监听器转发规则上的云服务器
+
+## API 参数对照表
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
