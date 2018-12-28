@@ -76,6 +76,6 @@ backends.n.instanceId | backends_n_instanceId
 backends.n.port | backends_n_port
 backends.n.weight | backends_n_weight
 
-> 其他参数不变
+> 其他参数
 backends.n.port | backends_n_port参数
 backends.n.port | backends_n_port
